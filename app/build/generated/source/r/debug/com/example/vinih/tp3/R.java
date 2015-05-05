@@ -1523,13 +1523,15 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c003d;
         public static final int action_mode_bar_stub=0x7f0c003c;
         public static final int action_mode_close_button=0x7f0c0025;
-        public static final int action_settings=0x7f0c0052;
+        public static final int action_settings=0x7f0c0055;
         public static final int activity_chooser_view_content=0x7f0c0026;
         public static final int alertTitle=0x7f0c0030;
         public static final int always=0x7f0c0016;
         public static final int beginning=0x7f0c0013;
         public static final int button=0x7f0c004f;
         public static final int button2=0x7f0c0051;
+        public static final int button3=0x7f0c0053;
+        public static final int buttonDelete=0x7f0c0054;
         public static final int buttonPanel=0x7f0c0036;
         public static final int checkbox=0x7f0c0038;
         public static final int collapseActionView=0x7f0c0017;
@@ -1586,6 +1588,7 @@ containing a value of this type.
         public static final int submit_area=0x7f0c004b;
         public static final int tabMode=0x7f0c000b;
         public static final int textSpacerNoButtons=0x7f0c0033;
+        public static final int textViewList=0x7f0c0052;
         public static final int title=0x7f0c002c;
         public static final int title_template=0x7f0c002f;
         public static final int topPanel=0x7f0c002e;
@@ -1626,10 +1629,11 @@ containing a value of this type.
         public static final int abc_select_dialog_material=0x7f040017;
         public static final int abc_simple_dropdown_hint=0x7f040018;
         public static final int activity_main=0x7f040019;
-        public static final int select_dialog_item_material=0x7f04001a;
-        public static final int select_dialog_multichoice_material=0x7f04001b;
-        public static final int select_dialog_singlechoice_material=0x7f04001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f04001d;
+        public static final int mylist=0x7f04001a;
+        public static final int select_dialog_item_material=0x7f04001b;
+        public static final int select_dialog_multichoice_material=0x7f04001c;
+        public static final int select_dialog_singlechoice_material=0x7f04001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f04001e;
     }
     public static final class menu {
         public static final int menu_main=0x7f0d0000;

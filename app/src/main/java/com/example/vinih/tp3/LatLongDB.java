@@ -57,8 +57,8 @@ public class LatLongDB {
 
     }
 
-    public List<LatLong> busca(){
-        List<LatLong> list = new ArrayList<LatLong>();
+    public ArrayList<LatLong> busca(){
+        ArrayList<LatLong> list = new ArrayList<LatLong>();
         String [] coluna = new String[]{"lat","long"};
         Cursor cursor = db.query("lldb", coluna, null, null, null, null, null);
 

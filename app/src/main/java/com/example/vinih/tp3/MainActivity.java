@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+//import android.widget.MyAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.sql.SQLException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
     SensorAccelerometer SM;
     LatLongDB db;
     ListView lv;
-    ArrayAdapter<LatLong> adapter;
+    MyAdapter adapter;
 
 
     @Override
@@ -29,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
 
         db = new LatLongDB(this, (ListView) findViewById(R.id.listView));
         db.open();
-        adapter = new ArrayAdapter<LatLong>(this, android.R.layout.simple_list_item_1, db.busca());
+        adapter = new MyAdapter(db.busca(), this, db);
         lv.setAdapter(adapter);
 
         SM = new SensorAccelerometer(this, db);
