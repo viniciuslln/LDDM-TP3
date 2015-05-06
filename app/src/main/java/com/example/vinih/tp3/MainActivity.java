@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         adapter = new MyAdapter(db.busca(), this, db);
         lv.setAdapter(adapter);
 
-        SM = new SensorAccelerometer(this, db);
+        SM = new SensorAccelerometer(this, db, adapter);
 
     }
 
@@ -37,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         SM.resume();
+        db.open();
+
     }
 
     @Override
@@ -69,6 +71,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         SM.unregisterSensor();
+        db.close();
+
     }
 
     public void getLoc(View view) {
@@ -78,8 +82,8 @@ public class MainActivity extends ActionBarActivity {
 
             mGPS.getLocation();
 
-            LatLong ll = new LatLong(mGPS.getLatitude(), mGPS.getLongitude());
-            db.insert(ll);
+            LatLong ll = new LatLong(mGPS.getLatitude(), mGPS.getLongitude(), mGPS.location.getTime());
+            ll = db.insert(ll);
             adapter.add(ll);
             adapter.notifyDataSetChanged();
 

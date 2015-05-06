@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class LatLongDB {
     Context context;
     ListView lv;
     ArrayAdapter<LatLong> adapter;
+    String [] colunas = new String[]{"_id","lat","long", "time"};
+
 
 
     public LatLongDB(Context context, ListView lv ) {
@@ -32,24 +35,36 @@ public class LatLongDB {
         try {
             db = auxDB.getWritableDatabase();
         }catch (Exception e){}
-
-
     }
 
     public void close() {
         db.close();
     }
 
-    public void insert(LatLong ll ){
+    public LatLong insert(LatLong ll ){
         ContentValues value = new ContentValues();
         String mmla = ""+ll.getLat();
         String mmlo = ""+ll.getLong();
+        String mmti = ll.getMdate();
 
         value.put("lat", mmla);
         value.put("long", mmlo);
+        value.put("time", mmti);
 
-        db.insert("lldb", null, value);
+        long insertId = db.insert("lldb", null, value);
 
+        Cursor cursor = db.query( "lldb", colunas,  "_id = " + insertId, null, null, null, null);
+        cursor.moveToFirst();
+        LatLong newLatLong = cursorToLatLong(cursor);
+        cursor.close();
+
+        return newLatLong;
+    }
+
+    public void mDelete( LatLong ll) {
+        long id = ll.getId();
+        Toast.makeText(context, "Comment deleted with id: " + id, Toast.LENGTH_SHORT).show();
+        db.delete("lldb", "_id = " + id, null);
     }
 
     public void limpa(){
@@ -59,22 +74,33 @@ public class LatLongDB {
 
     public ArrayList<LatLong> busca(){
         ArrayList<LatLong> list = new ArrayList<LatLong>();
-        String [] coluna = new String[]{"lat","long"};
-        Cursor cursor = db.query("lldb", coluna, null, null, null, null, null);
+        Cursor cursor = db.query("lldb", colunas, null, null, null, null, null);
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
 
             do {
-                LatLong mll = new LatLong();
-                mll.setLat(cursor.getLong(0));
-                mll.setLong(cursor.getLong(1));
+                LatLong latlong = new LatLong();
+                latlong.setId(cursor.getLong(0));
+                latlong.setLat(cursor.getDouble(1));
+                latlong.setLong(cursor.getDouble(2));
+                latlong.setMdate(cursor.getString(3));
 
-                list.add(mll);
+                list.add(latlong);
 
             }while (cursor.moveToNext());
         }
         return list;
 
+    }
+
+    private LatLong cursorToLatLong(Cursor cursor) {
+        LatLong latlong = new LatLong();
+        latlong.setId(cursor.getLong(0));
+        latlong.setLat(cursor.getDouble(1));
+        latlong.setLong(cursor.getDouble(2));
+        latlong.setMdate(cursor.getString(3));
+
+        return latlong;
     }
 }

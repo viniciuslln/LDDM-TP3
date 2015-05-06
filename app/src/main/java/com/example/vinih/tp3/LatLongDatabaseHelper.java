@@ -20,9 +20,10 @@ public class LatLongDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_DATA_TABLE = "CREATE TABLE lldb ( " +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "lat TEXT, "+
-                "long TEXT )";
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "lat REAL, "+
+                "long REAL, "+
+                "time TEXT not null);";
         db.execSQL(CREATE_DATA_TABLE);
     }
 

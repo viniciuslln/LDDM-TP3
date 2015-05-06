@@ -416,15 +416,14 @@ int id action_menu_presenter 0x7f0c0003
 int id action_mode_bar 0x7f0c003d
 int id action_mode_bar_stub 0x7f0c003c
 int id action_mode_close_button 0x7f0c0025
-int id action_settings 0x7f0c0055
+int id action_settings 0x7f0c0054
 int id activity_chooser_view_content 0x7f0c0026
 int id alertTitle 0x7f0c0030
 int id always 0x7f0c0016
 int id beginning 0x7f0c0013
 int id button 0x7f0c004f
 int id button2 0x7f0c0051
-int id button3 0x7f0c0053
-int id buttonDelete 0x7f0c0054
+int id buttonDelete 0x7f0c0053
 int id buttonPanel 0x7f0c0036
 int id checkbox 0x7f0c0038
 int id collapseActionView 0x7f0c0017

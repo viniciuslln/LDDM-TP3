@@ -6,19 +6,19 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="New Text"
         android:id="@+id/textViewList"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_toLeftOf="@+id/button3"
-        android:layout_toStartOf="@+id/button3" />
+        android:layout_toStartOf="@+id/buttonDelete"
+        android:layout_toLeftOf="@+id/buttonDelete"
+        android:layout_alignBottom="@+id/buttonDelete" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:text="Excluir"
         android:id="@+id/buttonDelete"
         android:layout_alignParentTop="true"

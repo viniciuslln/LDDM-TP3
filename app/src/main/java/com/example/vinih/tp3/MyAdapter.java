@@ -29,8 +29,7 @@ public class MyAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public long getItemId(int pos) {
-        return 0;
-                //list.get(pos).getId();
+        return list.get(pos).getId();
         //just return 0 if your list items do not have an Id variable.
     }
 
@@ -71,8 +70,8 @@ public class MyAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-
-                list.remove(position); //or some other task
+                db.mDelete(list.get(position));
+                list.remove(position);
                 notifyDataSetChanged();
             }
         });

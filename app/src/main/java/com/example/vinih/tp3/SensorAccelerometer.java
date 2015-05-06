@@ -25,12 +25,15 @@ public class SensorAccelerometer implements SensorEventListener {
     private float mAccel;
     private float mAccelCurrent;
     private float mAccelLast;
+    MyAdapter adapter;
 
 
-    public SensorAccelerometer(Context context, LatLongDB mDB) {
+
+    public SensorAccelerometer(Context context, LatLongDB mDB,    MyAdapter adapter) {
         // TODO Auto-generated constructor stub
 
         this.context = context;
+        this.adapter = adapter;
         db = mDB;
 
         initialiseSensor();
@@ -79,15 +82,17 @@ public class SensorAccelerometer implements SensorEventListener {
             mAccel = mAccel * 0.9f + delta;
             // Make this higher or lower according to how much
             // motion you want to detect
-            if(mAccel > 3){
+            if(mAccel > 10){
                 // do something
                 GPSLoc mGPS = new GPSLoc(context);
 
                 if(mGPS.canGetLocation ){
                     mGPS.getLocation();
 
-                    LatLong ll = new LatLong(mGPS.getLatitude(), mGPS.getLongitude());
-                    db.insert(ll);
+                    LatLong ll = new LatLong(mGPS.getLatitude(), mGPS.getLongitude(), mGPS.location.getTime());
+                    ll = db.insert(ll);
+                    adapter.add(ll);
+                    adapter.notifyDataSetChanged();
 
                 }else{
                     Toast.makeText(context, "Unabletofind", Toast.LENGTH_SHORT).show();
